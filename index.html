@@ -499,7 +499,7 @@
                     addMessage("My apologies, but the AI assistant is not correctly configured at this time. The required API key is missing. Please contact the site administrator.", "bot");
                     return;
                 }
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash:generateContent?key=${apiKey}`;
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
 
                 try {
                     const response = await fetch(apiUrl, {
