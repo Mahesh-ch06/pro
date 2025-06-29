@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --slate-900: #0f172a;
+  --slate-800: #1e293b;
+  --slate-700: #334155;
+  --slate-400: #94a3b8;
+  --slate-200: #e2e8f0;
+  --sky-400: #38bdf8;
+  --sky-500: #0ea5e9;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--slate-900);
+  color: var(--slate-200);
+}
+
+.glass-effect {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(51, 65, 85, 0.3);
+}
+
+/* Scroll-triggered animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Project card hover effect */
+.project-card:hover .project-card-link {
+  color: var(--sky-400);
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+}
+
+/* Chatbot specific styles */
+#chatbot-messages::-webkit-scrollbar { 
+  width: 6px; 
+}
+
+#chatbot-messages::-webkit-scrollbar-track { 
+  background: #f1f1f1; 
+  border-radius: 10px; 
+}
+
+#chatbot-messages::-webkit-scrollbar-thumb { 
+  background: #9ca3af; 
+  border-radius: 10px; 
+}
+
+#chatbot-messages::-webkit-scrollbar-thumb:hover { 
+  background: #6b7280; 
+}
+
+.chat-message { 
+  word-break: break-word; 
+}
+
+.fade-in { 
+  animation: fadeIn 0.3s ease-out; 
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
