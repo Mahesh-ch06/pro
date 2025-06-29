@@ -1,108 +1,144 @@
 import React from 'react';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight, ExternalLink, Github, Star } from 'lucide-react';
 import { maheshInfo } from '../data/portfolio';
 
 const Projects: React.FC = () => {
   return (
     <section id="projects" className="py-24 reveal">
-      <h2 className="text-3xl font-bold mb-2 text-white">
-        <span className="text-sky-400">03.</span> Things I've Built
-      </h2>
-      <div className="h-0.5 w-48 bg-slate-700 mb-12"></div>
-      <div className="space-y-12">
+      <div className="mb-16">
+        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+          <span className="text-sky-400">03.</span> Featured Projects
+        </h2>
+        <div className="h-1 w-24 bg-gradient-to-r from-sky-400 to-purple-500 rounded-full mb-8"></div>
+        <p className="text-xl text-slate-400 max-w-2xl">
+          Here are some of my favorite projects that showcase my skills in full-stack development, AI/ML, and problem-solving.
+        </p>
+      </div>
+      
+      <div className="space-y-16">
         {maheshInfo.projects.map((project, index) => {
           const isFeatured = project.type === "Startup ✨";
           
           if (isFeatured) {
             return (
-              <div key={index} className="project-card flex flex-col md:flex-row gap-6 items-center glass-effect p-8 rounded-lg">
-                <div className={`text-left w-full ${index % 2 !== 0 ? 'md:order-2' : ''}`}>
-                  <p className="text-sky-400 text-sm font-semibold">{project.type}</p>
-                  <h3 className="text-2xl font-bold text-white mb-3 hover:text-sky-400 transition-colors">
-                    <a href={project.link} target="_blank" rel="noopener noreferrer">
-                      {project.name}
-                    </a>
-                  </h3>
-                  <div className="description bg-slate-800 p-4 rounded-md shadow-lg mb-4 text-slate-300">
-                    <p>{project.description}</p>
-                    {project.highlights && (
-                      <ul className="mt-3 list-disc list-inside text-sm space-y-1">
-                        {project.highlights.map((highlight, hIndex) => (
-                          <li key={hIndex}>{highlight}</li>
+              <div key={index} className="relative">
+                <div className="glass-effect p-8 rounded-2xl hover:bg-slate-800/50 transition-all duration-300 group">
+                  <div className="flex flex-col lg:flex-row gap-8 items-center">
+                    <div className={`flex-1 ${index % 2 !== 0 ? 'lg:order-2' : ''}`}>
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-sky-500 to-purple-500 text-white text-sm font-semibold rounded-full">
+                          <Star className="w-4 h-4 mr-1" />
+                          {project.type}
+                        </span>
+                      </div>
+                      
+                      <h3 className="text-3xl font-bold text-white mb-3 group-hover:text-sky-400 transition-colors">
+                        {project.name}
+                      </h3>
+                      
+                      <p className="text-sky-400 font-medium mb-4">{project.tagline}</p>
+                      
+                      <div className="bg-slate-900/50 p-6 rounded-xl mb-6 border border-slate-700/50">
+                        <p className="text-slate-300 mb-4 leading-relaxed">{project.description}</p>
+                        {project.highlights && (
+                          <ul className="space-y-2">
+                            {project.highlights.map((highlight, hIndex) => (
+                              <li key={hIndex} className="flex items-start text-sm text-slate-400">
+                                <span className="w-2 h-2 bg-sky-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                {highlight}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                      
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {project.tech.map((tech, techIndex) => (
+                          <span key={techIndex} className="px-3 py-1 bg-sky-500/10 border border-sky-500/20 text-sky-400 text-sm rounded-full">
+                            {tech}
+                          </span>
                         ))}
-                      </ul>
-                    )}
+                      </div>
+                      
+                      <div className="flex gap-4">
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group inline-flex items-center bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-6 rounded-lg transition-all transform hover:scale-105"
+                        >
+                          <ExternalLink className="w-5 h-5 mr-2" />
+                          Live Demo
+                          <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                        </a>
+                      </div>
+                    </div>
+                    
+                    <div className="flex-1 max-w-lg">
+                      <div className="relative group/image">
+                        <div className="absolute inset-0 bg-gradient-to-r from-sky-400 to-purple-500 rounded-xl opacity-75 group-hover/image:opacity-100 transition-opacity"></div>
+                        <img
+                          src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=600"
+                          className="relative z-10 rounded-xl w-full h-80 object-cover group-hover/image:transform group-hover/image:scale-105 transition-transform duration-300"
+                          alt={project.name}
+                        />
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex flex-wrap gap-2 text-sm text-slate-400 mb-4">
-                    {project.tech.map((tech, techIndex) => (
-                      <React.Fragment key={techIndex}>
-                        <span>{tech}</span>
-                        {techIndex < project.tech.length - 1 && <span className="mx-1">·</span>}
-                      </React.Fragment>
-                    ))}
-                  </div>
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-sky-400 hover:text-sky-300 font-semibold group"
-                  >
-                    Explore Live Demo
-                    <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-                  </a>
-                </div>
-                <div className="w-full md:w-1/2 flex-shrink-0 group relative">
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="block">
-                    <img
-                      src={`https://placehold.co/600x360/1e293b/38bdf8?text=${project.name.replace(' ', '+')}`}
-                      className="rounded-md w-full h-full object-cover"
-                      alt={project.name}
-                    />
-                    <div className="absolute inset-0 bg-sky-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-md"></div>
-                  </a>
                 </div>
               </div>
             );
           } else {
             return (
-              <div key={index} className="relative grid gap-4 grid-cols-12 items-center text-left project-card glass-effect p-6 rounded-lg transition-all duration-300">
-                <div className="col-span-12 md:col-span-6 z-10">
-                  <p className="text-sky-400 text-sm font-semibold">Project</p>
-                  <h3 className="text-xl font-bold text-white mb-3 hover:text-sky-400 transition-colors">
-                    <a href={project.link} target="_blank" rel="noopener noreferrer">
+              <div key={index} className="glass-effect p-6 rounded-xl hover:bg-slate-800/50 transition-all duration-300 group">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                  <div className="md:col-span-2">
+                    <span className="text-sky-400 text-sm font-medium">Featured Project</span>
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-sky-400 transition-colors">
                       {project.name}
+                    </h3>
+                    <p className="text-slate-300 mb-4 leading-relaxed">{project.description}</p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tech.map((tech, techIndex) => (
+                        <span key={techIndex} className="px-2 py-1 bg-slate-700/50 text-slate-400 text-xs rounded">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-sky-400 hover:text-sky-300 font-medium group/link"
+                    >
+                      View Project
+                      <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover/link:translate-x-1" />
                     </a>
-                  </h3>
-                  <div className="description bg-slate-900/50 p-4 rounded-md shadow-lg mb-4 text-slate-300 text-sm">
-                    <p>{project.description}</p>
                   </div>
-                  <div className="flex flex-wrap gap-x-3 text-xs text-slate-400 mb-4">
-                    {project.tech.map((tech, techIndex) => (
-                      <span key={techIndex}>{tech}</span>
-                    ))}
-                  </div>
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-slate-400 hover:text-sky-400"
-                  >
-                    <ExternalLink className="w-6 h-6" />
-                  </a>
-                </div>
-                <div className="hidden md:block col-span-6 opacity-20 md:opacity-100">
-                  <a href={project.link} target="_blank" rel="noopener noreferrer">
+                  <div className="hidden md:block">
                     <img
-                      src={`https://placehold.co/600x360/1e293b/38bdf8?text=${project.name.replace(' ', '+')}`}
-                      className="rounded-md w-full h-full object-cover grayscale hover:grayscale-0 transition-all"
+                      src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400"
+                      className="rounded-lg w-full h-32 object-cover grayscale group-hover:grayscale-0 transition-all"
                       alt={project.name}
                     />
-                  </a>
+                  </div>
                 </div>
               </div>
             );
           }
         })}
+      </div>
+      
+      <div className="text-center mt-16">
+        <a
+          href="https://github.com/Mahesh-ch06"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center border-2 border-sky-400 text-sky-400 hover:bg-sky-400 hover:text-slate-900 font-semibold py-3 px-8 rounded-lg transition-all"
+        >
+          <Github className="w-5 h-5 mr-2" />
+          View All Projects on GitHub
+        </a>
       </div>
     </section>
   );
